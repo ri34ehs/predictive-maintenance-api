@@ -15,7 +15,7 @@ This project is an end-to-end machine learning application that predicts the Rem
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/ri34ehs/predictive-maintenance-api.git](https://github.com/ri34ehs/predictive-maintenance-api.git)
+    git clone <your-repo-url>
     cd predictive-maintenance-api
     ```
 
@@ -34,6 +34,13 @@ This project is an end-to-end machine learning application that predicts the Rem
 
 4.  **Start the API server:**
     ```bash
+    python api/app.py
+    ```
+
+5.  **Test the API (in a new terminal):**
+    ```bash
+    python api/test_api.py
+    ```
     python api/app.py
     ```
 
