@@ -1,7 +1,2 @@
-pandas
-scikit-learn
-joblib
-Flask
+streamlit
 requests
-streamlit==1.26.0
-numpy
