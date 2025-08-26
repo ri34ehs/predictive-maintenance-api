@@ -1,8 +1,7 @@
-# Dockerfile
-
-# Use an official Python runtime as a parent image
+# Force update v1
 FROM python:3.9-slim
 
+# ... the rest of your Dockerfile ...
 # Set the working directory in the container
 WORKDIR /app
 
