@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 # --- API Endpoint ---
-API_URL = "https://predictive-api-825581194035.europe-west1.run.app"
+API_URL = "https://predictive-api-298148143452-europe-west1.run.app."
 
 # --- Page Title and Description ---
 st.title("⚙️ Predictive Maintenance Dashboard")
