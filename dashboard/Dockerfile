@@ -18,4 +18,4 @@ EXPOSE 8080
 
 # Run the Streamlit app using the $PORT environment variable
 # Use the filename of your Streamlit script (e.g., dashboard.py)
-CMD streamlit run dashboard.py --server.port=$PORT --server.headless=true
+CMD streamlit run streamlit_app.py --server.port=$PORT --server.headless=true
