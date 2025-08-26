@@ -61,7 +61,7 @@ if st.button('Predict Remaining Useful Life', use_container_width=True):
     
     # Send request to the API
     try:
-        response = requests.post(API_URL, json=payload)
+        response = requests.post(f"{API_URL}/predict", json=payload)
         response.raise_for_status()  # Raise an exception for bad status codes
         
         # Display the prediction
