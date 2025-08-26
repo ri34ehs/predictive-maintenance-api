@@ -3,4 +3,5 @@ scikit-learn
 joblib
 Flask
 requests
-streamlit==1.26.0numpy 
+streamlit==1.26.0
+numpy
