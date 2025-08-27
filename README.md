@@ -10,48 +10,52 @@ Scikit-learn for machine learning modeling
 
 Flask for the prediction API
 
+Streamlit for the interactive dashboard
+
+Gunicorn for the production API server
+
+Render for cloud deployment
+
 Git & GitHub for version control
 
 Live Application 🌐
-This project is fully deployed and accessible on the internet.
+This project is fully deployed on Render and is accessible via the following URLs:
 
-Live Dashboard
-You can interact with the live dashboard to see predictions and monitor your equipment.
+Live Dashboard: https://predictive-maintenance-dashboard-cpog.onrender.com
 
-Dashboard URL: https://dashboardpy-bdkmgpcutfzngcqpljwksp.streamlit.app/
-
-Backend API
-The backend API is deployed on Google Cloud Run and serves the predictions for the dashboard.
-
-API URL: https://predictive-api-825581194035.europe-west1.run.app
+Backend API: https://predictive-maintenance-api-18.onrender.com
 
 How to Run This Project Locally
 Clone the repository:
 
 Bash
 
-git clone <your-repo-url>
+git clone https://github.com/ri34ehs/predictive-maintenance-api.git
 cd predictive-maintenance-api
+Create and activate a virtual environment:
+
+Bash
+
+python -m venv venv
+venv\Scripts\activate  # On Windows
+source venv/bin/activate  # On macOS/Linux
 Install dependencies:
 
 Bash
 
-pip install -r requirements.txt
-Run the data and model pipeline:
-(Ensure train_FD001.txt is in the data/ folder first)
+pip install -r api/requirements.txt
+pip install -r dashboard/requirements.txt
+Run the API locally (Terminal 1):
+First, start the backend API.
 
 Bash
 
-python scripts/phase1_load_data.py
-python scripts/phase3_preprocess.py
-python scripts/phase5_tune_model.py
-Start the API server:
+cd api
+python app.py
+Run the Streamlit Dashboard locally (Terminal 2):
+Next, open a new terminal window and start the dashboard.
 
 Bash
 
-python api/app.py
-Test the API (in a new terminal):
-
-Bash
-
-python api/test_api.py
+cd dashboard
+streamlit run streamlit_app.py
