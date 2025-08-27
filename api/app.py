@@ -38,6 +38,8 @@ def predict():
     """
     try:
         data = request.get_json()
+        # ADD THIS LINE: Print the received JSON data to your terminal
+        print(f"Received data: {data}")
         if not data or 'features' not in data or not isinstance(data['features'], list):
             return jsonify({'error': "Invalid input: 'features' key missing or not a list."}), 400
 
@@ -49,7 +51,6 @@ def predict():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
 # -------------------- START SERVER --------------------
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

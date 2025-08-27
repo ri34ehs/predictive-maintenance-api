@@ -3,7 +3,9 @@ services:
     name: predictive-maintenance-api
     env: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
+    # Instructs Render to install dependencies from the API's requirements file
+    buildCommand: "pip install -r api/requirements.txt"
+    # Uses Gunicorn to run the Flask app from the 'api' directory
     startCommand: gunicorn -w 4 -b 0.0.0.0:$PORT api.app:app
     envVars:
       - key: PYTHON_VERSION
@@ -13,10 +15,10 @@ services:
     name: predictive-maintenance-dashboard
     env: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
+    # Instructs Render to install dependencies from the dashboard's requirements file
+    buildCommand: "pip install -r dashboard/requirements.txt"
+    # Starts the Streamlit app with the correct port and address for deployment
     startCommand: streamlit run dashboard/streamlit_app.py --server.port $PORT --server.address 0.0.0.0
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.18
-
-

@@ -15,7 +15,7 @@ st.markdown("Use the sliders below to set **engine sensor readings** and predict
 
 # -------------------- BACKEND API URL --------------------
 # Use environment variable if deployed, else default to local
-API_URL = os.environ.get("API_URL", "https://predictive-maintenance-api-7.onrender.com")
+API_URL = os.environ.get("API_URL", "http://127.0.0.1:5000")
 
 # -------------------- INPUT SLIDERS --------------------
 st.header("📊 Engine Sensor Readings")
@@ -43,6 +43,9 @@ with col2:
 # -------------------- PREDICTION --------------------
 st.markdown("---")
 if st.button("🔮 Predict RUL"):
+    # Build the full URL to the /predict endpoint
+    PREDICT_URL = f"{API_URL}/predict"
+
     # Convert sliders to feature list
     features = [
         cycle, s2, s3, s4, s7, s8, s11,
@@ -51,7 +54,8 @@ if st.button("🔮 Predict RUL"):
     input_data = {"features": features}
 
     try:
-        response = requests.post(API_URL, json=input_data, timeout=10)
+        # Use requests.post() and the corrected URL
+        response = requests.post(PREDICT_URL, json=input_data, timeout=10)
         if response.status_code == 200:
             result = response.json()
             st.success(f"✅ Predicted Remaining Useful Life (RUL): **{result['predicted_rul']} cycles**")
@@ -60,9 +64,4 @@ if st.button("🔮 Predict RUL"):
     except requests.exceptions.Timeout:
         st.error("⏳ Request timed out. Please try again.")
     except requests.exceptions.ConnectionError:
-        st.error("🚨 Connection error: Could not reach API. Check URL or network.")
-    except Exception as e:
-        st.error(f"⚠️ Unexpected error: {e}")
-
-
- 
+        st.error("🚨 Connection error: Could not reach API. Check URL")
