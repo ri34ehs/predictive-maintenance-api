@@ -12,12 +12,21 @@ st.set_page_config(
 st.title("⚙️ Predictive Maintenance Dashboard")
 st.markdown("Use the sliders below to set **engine sensor readings** and predict the Remaining Useful Life (RUL).")
 
+<<<<<<< HEAD
 # Backend API URL (Update this with your Render/Cloud Run deployment URL)
 API_URL = "https://your-api-service.onrender.com/predict"
 
 # -------------------- INPUT SLIDERS --------------------
 st.header("📊 Engine Sensor Readings")
 
+=======
+# -------------------- BACKEND API URL --------------------
+API_URL = "https://your-render-backend.onrender.com/predict"
+
+# -------------------- INPUT SLIDERS --------------------
+st.header("📊 Engine Sensor Readings")
+
+>>>>>>> ac1dbdca (Prepare API and Streamlit for Render deployment)
 col1, col2 = st.columns(2)
 
 with col1:
@@ -41,18 +50,31 @@ with col2:
 # -------------------- PREDICTION --------------------
 st.markdown("---")
 if st.button("🔮 Predict RUL"):
+<<<<<<< HEAD
     input_data = {
         "cycle": cycle,
         "s2": s2, "s3": s3, "s4": s4, "s7": s7, "s8": s8, "s11": s11,
         "s12": s12, "s13": s13, "s14": s14, "s15": s15,
         "s17": s17, "s20": s20, "s21": s21
     }
+=======
+    # Convert sliders to feature list
+    features = [
+        cycle, s2, s3, s4, s7, s8, s11,
+        s12, s13, s14, s15, s17, s20, s21
+    ]
+    input_data = {"features": features}
+>>>>>>> ac1dbdca (Prepare API and Streamlit for Render deployment)
 
     try:
         response = requests.post(API_URL, json=input_data, timeout=10)
         if response.status_code == 200:
             result = response.json()
+<<<<<<< HEAD
             st.success(f"✅ Predicted Remaining Useful Life (RUL): **{result['rul']} cycles**")
+=======
+            st.success(f"✅ Predicted Remaining Useful Life (RUL): **{result['predicted_rul']} cycles**")
+>>>>>>> ac1dbdca (Prepare API and Streamlit for Render deployment)
         else:
             st.error(f"❌ API Error {response.status_code}: {response.text}")
     except requests.exceptions.Timeout:
@@ -61,5 +83,8 @@ if st.button("🔮 Predict RUL"):
         st.error("🚨 Connection error: Could not reach API. Check URL or network.")
     except Exception as e:
         st.error(f"⚠️ Unexpected error: {e}")
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ac1dbdca (Prepare API and Streamlit for Render deployment)
