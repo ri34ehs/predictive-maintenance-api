@@ -15,7 +15,7 @@ st.markdown("Use the sliders below to set **engine sensor readings** and predict
 
 # -------------------- BACKEND API URL --------------------
 # Use environment variable if deployed, else default to local
-API_URL = os.environ.get("API_URL", "http://127.0.0.1:5000")
+API_URL = os.environ.get("API_URL", "https://predictive-maintenance-api-18.onrender.com")
 
 # -------------------- INPUT SLIDERS --------------------
 st.header("📊 Engine Sensor Readings")
