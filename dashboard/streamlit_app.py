@@ -1,14 +1,23 @@
 import streamlit as st
 import requests
-import json
 
+# -------------------- PAGE CONFIG --------------------
+st.set_page_config(
+    page_title="Predictive Maintenance Dashboard",
+    page_icon="⚙️",
+    layout="wide"
+)
+
+# -------------------- HEADER --------------------
 st.title("⚙️ Predictive Maintenance Dashboard")
-st.header("Engine Sensor Readings")
+st.markdown("Use the sliders below to set **engine sensor readings** and predict the Remaining Useful Life (RUL).")
 
-# Backend API URL (adjust if deployed)
+# Backend API URL (Update this with your Render/Cloud Run deployment URL)
 API_URL = "https://your-api-service.onrender.com/predict"
 
-# Create two columns for the sliders
+# -------------------- INPUT SLIDERS --------------------
+st.header("📊 Engine Sensor Readings")
+
 col1, col2 = st.columns(2)
 
 with col1:
@@ -29,9 +38,9 @@ with col2:
     s20 = st.slider('Sensor 20', min_value=38.0, max_value=40.0, value=38.8, step=0.01)
     s21 = st.slider('Sensor 21', min_value=23.0, max_value=24.0, value=23.3, step=0.01)
 
-# Prediction Button
+# -------------------- PREDICTION --------------------
+st.markdown("---")
 if st.button("🔮 Predict RUL"):
-    # Prepare input as JSON
     input_data = {
         "cycle": cycle,
         "s2": s2, "s3": s3, "s4": s4, "s7": s7, "s8": s8, "s11": s11,
@@ -40,11 +49,17 @@ if st.button("🔮 Predict RUL"):
     }
 
     try:
-        response = requests.post(API_URL, json=input_data)
+        response = requests.post(API_URL, json=input_data, timeout=10)
         if response.status_code == 200:
             result = response.json()
-            st.success(f"✅ Predicted RUL: {result['rul']} cycles")
+            st.success(f"✅ Predicted Remaining Useful Life (RUL): **{result['rul']} cycles**")
         else:
             st.error(f"❌ API Error {response.status_code}: {response.text}")
+    except requests.exceptions.Timeout:
+        st.error("⏳ Request timed out. Please try again.")
+    except requests.exceptions.ConnectionError:
+        st.error("🚨 Connection error: Could not reach API. Check URL or network.")
     except Exception as e:
-        st.error(f"🚨 Connection error: {e}")
+        st.error(f"⚠️ Unexpected error: {e}")
+
+
