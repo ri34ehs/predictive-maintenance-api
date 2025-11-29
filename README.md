@@ -1,61 +1,101 @@
-Predictive Maintenance API for Manufacturing Equipment
-This project is an end-to-end machine learning application that predicts the Remaining Useful Life (RUL) of manufacturing equipment based on sensor data. It includes data preprocessing, model training, hyperparameter tuning, and a Flask API for serving live predictions.
+🚀 Predictive Maintenance — End-to-End Machine Learning System
 
-Tech Stack
-Python
+This project predicts the Remaining Useful Life (RUL) of manufacturing equipment using real-time sensor data. It includes data preprocessing, model training, hyperparameter tuning, API development, dashboard UI, and cloud deployment.
 
-Pandas for data manipulation
+🔍 Problem Overview
 
-Scikit-learn for machine learning modeling
+Manufacturing machines fail unexpectedly, causing downtime and financial loss.
+This project solves that by predicting how long a machine will continue functioning before failure.
 
-Flask for the prediction API
+✔ Predict RUL using multivariate sensor data
+✔ Expose a real-time prediction API
+✔ Visualize predictions & trends on a dashboard
 
-Streamlit for the interactive dashboard
+🧠 Machine Learning Pipeline
 
-Gunicorn for the production API server
+Data Processing: Missing value handling, scaling, feature engineering
 
-Render for cloud deployment
+Model: RandomForestRegressor / XGBoost (whichever you used — specify it)
 
-Git & GitHub for version control
+Evaluation: MAE, RMSE, R²
 
-Live Application 🌐
-This project is fully deployed on Render and is accessible via the following URLs:
+Optimization: Hyperparameter tuning using GridSearchCV
 
-Live Dashboard: https://predictive-maintenance-dashboard-cpog.onrender.com
+(Add your actual numbers, otherwise it feels empty.)
 
-Backend API: https://predictive-maintenance-api-18.onrender.com
+🧱 Tech Stack
 
-How to Run This Project Locally
-Clone the repository:
+Languages/Tools: Python
+ML: Pandas, NumPy, Scikit-learn
+API: Flask
+UI: Streamlit
+Server: Gunicorn
+Deployment: Render
+Version Control: Git & GitHub
 
-Bash
+🌐 Live Deployment
 
+Dashboard: https://predictive-maintenance-dashboard-cpog.onrender.com
+
+API: https://predictive-maintenance-api-18.onrender.com
+
+📡 API Usage
+Endpoint
+
+POST /predict
+
+Sample Request
+{
+  "temperature": 85.3,
+  "vibration": 0.91,
+  "pressure": 31.5,
+  "rpm": 1420
+}
+
+Sample Response
+{
+  "predicted_RUL": 52.7
+}
+
+📊 Dashboard Preview
+
+(Add a screenshot — mandatory for good README.)
+
+🛠 Run Locally
+1. Clone the repo
 git clone https://github.com/ri34ehs/predictive-maintenance-api.git
 cd predictive-maintenance-api
-Create and activate a virtual environment:
 
-Bash
-
+2. Create a virtual environment
 python -m venv venv
-venv\Scripts\activate  # On Windows
-source venv/bin/activate  # On macOS/Linux
-Install dependencies:
 
-Bash
 
+Activate:
+
+venv\Scripts\activate      # Windows
+source venv/bin/activate  # macOS/Linux
+
+3. Install dependencies
 pip install -r api/requirements.txt
 pip install -r dashboard/requirements.txt
-Run the API locally (Terminal 1):
-First, start the backend API.
 
-Bash
-
+4. Start Backend API (Terminal 1)
 cd api
 python app.py
-Run the Streamlit Dashboard locally (Terminal 2):
-Next, open a new terminal window and start the dashboard.
 
-Bash
-
+5. Start Streamlit Dashboard (Terminal 2)
 cd dashboard
 streamlit run streamlit_app.py
+
+📁 Project Structure
+project/
+│── api/
+│   ├── app.py
+│   └── requirements.txt
+│── dashboard/
+│   ├── streamlit_app.py
+│   └── requirements.txt
+│── models/
+│── data/
+└── README.md
+
